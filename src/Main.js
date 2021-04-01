@@ -21,9 +21,9 @@ export default class Main extends Component {
         const vid = Object.keys(this.state.test.rates).find(x => x===check)
         this.setState({
           base: check,
-
+          money1: this.state.test.rates[check]
+          // money1: this.state.test.rates[vid]
         })
-        console.log(this.state.test.rates[vid])
       }
       jen1 = (e) => {
         const check = e.target.value
@@ -31,8 +31,9 @@ export default class Main extends Component {
         // console.log(Object.keys(this.state.test.rates)[0])
         // console.log(this.state.test.rates[vid])
         this.setState({
-            money1: this.state.test.rates[vid],
-            base1: check
+          base1: check,
+          money1: this.state.test.rates[vid]
+
         })
 
       }
@@ -56,14 +57,12 @@ export default class Main extends Component {
       componentDidUpdate(prevProps, prevState) {
         if (prevState.base !== this.state.base) {
           const url = `https://api.currencyscoop.com/v1/latest?base=${this.state.base}&api_key=e27936963717e591c3881d976c2e7749`
-          console.log(url.statusCode)
           axios.get(url)
             .then(response => {
               this.setState({
                 test: response.data.response,
                 xe: response.data.response.rates
               })
-
             })
         }
       }
@@ -78,6 +77,12 @@ export default class Main extends Component {
     render() {
         if (this.state.test.rates) {
             const country = Object.keys(this.state.test.rates)
+            console.log(this.state.base)
+            console.log(this.state.money1)
+            console.log(this.state.test.rates[this.state.base1])
+            const vidu = this.state.test.rates[this.state.base1]
+            console.log(this.state.test.rates)
+
             return (
             <>
             <Header 
@@ -86,7 +91,7 @@ export default class Main extends Component {
             hi2 = {country}
             hi3 = {this.num}
             hi4 = {this.jen1}
-            hi5 = {this.state.money1}
+            hi5 = {vidu}
             hi6 = {this.state.money}
             />
             <App 

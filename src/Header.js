@@ -30,7 +30,7 @@ export default function Header (props) {
                   )
                 })}
               </select>
-              <div className='header__exchange--amount2' onChange={props.hi3}>{vidu===0||isNaN(vidu)?" ":vidu}</div>
+              <div className='header__exchange--amount2'>{vidu===0||isNaN(vidu)?" ":vidu}</div>
             </div>
           </div>
       )
