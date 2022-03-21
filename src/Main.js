@@ -13,6 +13,8 @@ export default class Main extends Component {
         money:"",
         money1:'',
         xe:[],
+        sBase:[],
+        sBase1:[]
 
       }
     
@@ -21,7 +23,8 @@ export default class Main extends Component {
         const vid = Object.keys(this.state.test.rates).find(x => x===check)
         this.setState({
           base: check,
-          money1: this.state.test.rates[check]
+          money1: this.state.test.rates[check],
+          sBase: check
           // money1: this.state.test.rates[vid]
         })
       }
@@ -32,7 +35,10 @@ export default class Main extends Component {
         // console.log(this.state.test.rates[vid])
         this.setState({
           base1: check,
-          money1: this.state.test.rates[vid]
+          money1: this.state.test.rates[vid],
+          sBase1: check,
+          sBase: this.state.base
+
 
         })
 
@@ -61,7 +67,8 @@ export default class Main extends Component {
             .then(response => {
               this.setState({
                 test: response.data.response,
-                xe: response.data.response.rates
+                xe: response.data.response.rates,
+                
               })
             })
         }
@@ -74,6 +81,15 @@ export default class Main extends Component {
           })
       }
 
+      // change = () => {
+      //   console.log(this.state.base)
+      //   console.log(this.state.base1)
+      //   this.setState({
+      //     base: this.state.sBase1,
+      //     base1: this.state.sBase,
+      //   })
+        
+      // }
     render() {
         if (this.state.test.rates) {
             const country = Object.keys(this.state.test.rates)
@@ -93,6 +109,7 @@ export default class Main extends Component {
             hi4 = {this.jen1}
             hi5 = {vidu}
             hi6 = {this.state.money}
+            vidu1 = {this.change}
             />
             <App 
                 hi={this.state.base}
